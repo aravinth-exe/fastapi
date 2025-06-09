@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pandas
+matplotlib
+scikit-learn
+mlflow
+prophet
+python-multipart

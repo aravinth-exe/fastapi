@@ -1,5 +1,8 @@
 FROM python:3.10-slim
 
+# Optional: Create /tmp manually if you want custom permission
+# RUN mkdir -p /tmp && chmod -R 777 /tmp
+
 RUN mkdir -p /fastapi/uploads
 WORKDIR /fastapi
 

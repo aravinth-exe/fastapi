@@ -22,8 +22,8 @@ async def upload_csv(file: UploadFile = File(...)):
 
         # Save uploaded file
         content = await file.read()
-        file_path = f"/tmp/{file.filename}"
-        os.makedirs("/tmp", exist_ok=True)
+        file_path = f"/fastapi/tmp/{file.filename}"
+        os.makedirs("/fastapi/tmp", exist_ok=True)
         with open(file_path, "wb") as f:
             f.write(content)
         print("[LOG] File saved to:", file_path, flush=True)

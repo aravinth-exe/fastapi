@@ -72,7 +72,7 @@ pipeline {
               aws configure set aws_secret_access_key %AWS_SECRET_ACCESS_KEY%
               aws ecs update-service ^
                 --cluster timeseries-forecasting ^
-                --service timeseries-forecasting-service-6nxf55dq ^
+                --service timeseries-forecasting-service-3c4jeu0g ^
                 --force-new-deployment ^
                 --region %REGION%
             """

@@ -46,14 +46,18 @@ pipeline {
 
     stage('Push to AWS ECR') {
       steps {
-        withCredentials([usernamePassword(credentialsId: 'aws-ecr', passwordVariable: 'AWS_SECRET', usernameVariable: 'AWS_ACCESS_KEY')]) {
+        // withCredentials([usernamePassword(credentialsId: 'aws-ecr', passwordVariable: 'AWS_SECRET', usernameVariable: 'AWS_ACCESS_KEY')]) {
+        withCredentials([
+          string(credentialsId: 'aws-access-key-id', variable: 'AWS_ACCESS_KEY_ID'),
+          string(credentialsId: 'aws-secret-access-key', variable: 'AWS_SECRET_ACCESS_KEY')
+        ]) {  
           script {
-            sh """
-              aws configure set aws_access_key_id $AWS_ACCESS_KEY
-              aws configure set aws_secret_access_key $AWS_SECRET
-              aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin ${AWS_ECR_URI}
-              docker tag ${IMAGE_NAME} ${AWS_ECR_URI}
-              docker push ${AWS_ECR_URI}
+            bat """
+              aws configure set aws_access_key_id %AWS_ACCESS_KEY_ID%
+              aws configure set aws_secret_access_key %AWS_SECRET_ACCESS_KEY%
+              aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 994390684427.dkr.ecr.eu-north-1.amazonaws.com
+              docker tag fastapi:latest 994390684427.dkr.ecr.eu-north-1.amazonaws.com/fastapi:latest
+              docker push 994390684427.dkr.ecr.eu-north-1.amazonaws.com/fastapi:latest
             """
           }
         }

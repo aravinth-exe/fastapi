@@ -38,7 +38,7 @@ async def upload_csv(file: UploadFile = File(...)):
         print("[LOG] Data loaded with shape:", df.shape, flush=True)
 
         # MLflow setup
-        mlflow.set_tracking_uri("http://mlflow:5000")
+        mlflow.set_tracking_uri("http://timeseries-forecasting-service-3c4jeu0g:5000")
         mlflow.set_experiment("ForecastingApp")
 
         with mlflow.start_run():

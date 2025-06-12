@@ -74,7 +74,7 @@ pipeline {
                 --cluster timeseries-forecasting ^
                 --service timeseries-forecasting-service-6nxf55dq ^
                 --force-new-deployment ^
-                --region eu-north-1
+                --region %REGION%
             """
           }
         }

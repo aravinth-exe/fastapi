@@ -1,16 +1,15 @@
 FROM python:3.10-slim
 
-# Optional: Create /tmp manually if you want custom permission
-# RUN mkdir -p /tmp && chmod -R 777 /tmp
-
-RUN mkdir -p /fastapi/uploads
 WORKDIR /fastapi
 
 COPY . .
 RUN pip install --no-cache-dir -r requirement.txt
 
-# Set permissions for temp file access
-RUN chmod -R 777 /fastapi/tmp
+# Optional: Create /tmp manually if you want custom permission
+# RUN mkdir -p /tmp && chmod -R 777 /tmp
+
+RUN mkdir -p /fastapi/tmp && chmod -R 777 /fastapi/tmp
+RUN mkdir -p /fastapi/uploads && chmod -R 777 /fastapi/uploads
 
 EXPOSE 8000
 

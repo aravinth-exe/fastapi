@@ -9,6 +9,11 @@ from forecasting import run_forecast
 
 app = FastAPI()
 
+@app.get("/check2/")
+async def check():
+    print("[LOG] Health check endpoint accessed ", flush=True)
+    return {"status": "OK"}
+
 @app.get("/check/")
 async def check():
     print("[LOG] Health check endpoint accessed ", flush=True)
